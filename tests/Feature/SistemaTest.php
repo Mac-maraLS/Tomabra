@@ -8,14 +8,11 @@ class SistemaTest extends TestCase
 {
     public function test_home()
     {
-        $response = $this->get('/');
-        $response->assertStatus(200);
+        $this->get('/')->assertStatus(200);
     }
 
-    public function test_login_page()
+    public function test_login()
     {
-        $response = $this->get('/login');
-        $response->assertStatus(200);
+        $this->get('/login')->assertStatus(200);
     }
-
 }
