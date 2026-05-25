@@ -9,8 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4   # 🔥 actualizado
+      - uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -21,13 +20,27 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist
 
+      # 🔥 NUEVO
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install NPM
+        run: npm install
+
+      - name: Build Vite
+        run: npm run build
+
+      # 🔥 FIN NUEVO
+
       - name: Copy env
         run: cp .env.example .env
 
       - name: Generate key
         run: php artisan key:generate
 
-      - name: Create SQLite database
+      - name: Create SQLite
         run: |
           mkdir -p database
           touch database/database.sqlite
