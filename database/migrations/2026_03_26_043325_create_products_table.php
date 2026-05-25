@@ -14,11 +14,9 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
             $table->integer('stock')->default(0);
-            $table->string('image')->nullable();
+            $table->string('image')->nullable(); // ✅ SOLO UNA VEZ
             $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
             $table->timestamps();
-            $table->string('image')->nullable();
-            
         });
     }
 
